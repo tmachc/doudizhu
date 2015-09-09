@@ -7,23 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PlayingDeck.h"
 
 @interface User : NSObject
 
 @property (nonatomic, readonly) NSMutableArray *myCards;
+/*! @brief 是否拥有下一次的出牌权 */
+@property (nonatomic, getter = isMyTurn) BOOL myTurn;
+
+- (instancetype)initWithCarsCount:(NSInteger)count usingDeck:(PlayingDeck *)deck;
 
 /**
  *  出牌
  *
  *  @param cards 所出的牌
- */
-- (void)outCards:(NSArray *)cards;
-
-/**
- *  获取我的牌总数
  *
- *  @return 总数
+ *  @return 是否可以出
  */
-- (NSInteger)getMyCardTotals;
+- (BOOL)outCards:(NSArray *)cards lastOut:(NSArray *)lastCards;
 
 @end
