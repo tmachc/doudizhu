@@ -20,6 +20,7 @@
 		E78F2DA11BA003B500E1B04B /* PlayingDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2DA01BA003B500E1B04B /* PlayingDeck.m */; };
 		E78F2DA41BA0202B00E1B04B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2DA31BA0202B00E1B04B /* User.m */; };
 		E78F2DA71BA029C300E1B04B /* GameTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2DA61BA029C300E1B04B /* GameTable.m */; };
+		E7FB5FBC1BA16D8E006AADBE /* SingleUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB5FBB1BA16D8E006AADBE /* SingleUserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,8 @@
 		E78F2DA31BA0202B00E1B04B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = DouDiZhu/User.m; sourceTree = "<group>"; };
 		E78F2DA51BA029C300E1B04B /* GameTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameTable.h; path = DouDiZhu/GameTable.h; sourceTree = "<group>"; };
 		E78F2DA61BA029C300E1B04B /* GameTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameTable.m; path = DouDiZhu/GameTable.m; sourceTree = "<group>"; };
+		E7FB5FBA1BA16D8E006AADBE /* SingleUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleUserViewController.h; sourceTree = "<group>"; };
+		E7FB5FBB1BA16D8E006AADBE /* SingleUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleUserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				E78F2D731B9FCF9400E1B04B /* AppDelegate.m */,
 				E78F2D751B9FCF9400E1B04B /* ViewController.h */,
 				E78F2D761B9FCF9400E1B04B /* ViewController.m */,
+				E7FB5FBA1BA16D8E006AADBE /* SingleUserViewController.h */,
+				E7FB5FBB1BA16D8E006AADBE /* SingleUserViewController.m */,
 				E78F2D781B9FCF9400E1B04B /* Main.storyboard */,
 				E78F2D7B1B9FCF9400E1B04B /* Images.xcassets */,
 				E78F2D7D1B9FCF9400E1B04B /* LaunchScreen.xib */,
@@ -270,6 +275,7 @@
 				E78F2D9A1B9FDBFC00E1B04B /* Card.m in Sources */,
 				E78F2D961B9FDBA600E1B04B /* Deck.m in Sources */,
 				E78F2DA71BA029C300E1B04B /* GameTable.m in Sources */,
+				E7FB5FBC1BA16D8E006AADBE /* SingleUserViewController.m in Sources */,
 				E78F2D771B9FCF9400E1B04B /* ViewController.m in Sources */,
 				E78F2D741B9FCF9400E1B04B /* AppDelegate.m in Sources */,
 				E78F2D711B9FCF9400E1B04B /* main.m in Sources */,

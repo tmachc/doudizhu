@@ -38,11 +38,6 @@ typedef NS_ENUM(NSInteger, OutCardsOtherType) {
 
 @implementation User
 
-- (instancetype)init
-{
-    return nil;
-}
-
 - (NSMutableArray *)myCards
 {
     if (!_myCards) {
@@ -52,17 +47,14 @@ typedef NS_ENUM(NSInteger, OutCardsOtherType) {
 }
 
 #pragma mark 初始化
-- (instancetype)initWithCarsCount:(NSInteger)count usingDeck:(PlayingDeck *)deck
+- (void)setCarsCount:(NSInteger)count usingDeck:(PlayingDeck *)deck
 {
-    self = [super init];
-    if (self) {
-        // 拿13张牌
-        for (int i = 0; i < count; i ++) {
-            Card *card = [deck getRandomCard];
-            self.myCards[i] = card;
-        }
+    _myCards = nil;
+    // 拿13张牌
+    for (int i = 0; i < count; i ++) {
+        Card *card = [deck getRandomCard];
+        self.myCards[i] = card;
     }
-    return self;
 }
 
 - (BOOL)outCards:(NSArray *)cards lastOut:(NSArray *)lastCards

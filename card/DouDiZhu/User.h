@@ -15,7 +15,7 @@
 /*! @brief 是否拥有下一次的出牌权 */
 @property (nonatomic, getter = isMyTurn) BOOL myTurn;
 
-- (instancetype)initWithCarsCount:(NSInteger)count usingDeck:(PlayingDeck *)deck;
+- (void)setCarsCount:(NSInteger)count usingDeck:(PlayingDeck *)deck;
 
 /**
  *  出牌
