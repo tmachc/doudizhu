@@ -28,7 +28,7 @@
 
 - (NSString *)contents
 {
-    return [self.suit stringByAppendingString:[PlayingCard rankStrings][self.rank]];
+    return [NSString stringWithFormat:@"%@\n%@", [PlayingCard rankStrings][self.rank], self.suit];
 }
 
 - (void)setSuit:(NSString *)suit

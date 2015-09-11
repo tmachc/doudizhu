@@ -7,10 +7,12 @@
 //
 
 #import "SingleUserViewController.h"
+#import "Masonry.h"
 #import "GameTable.h"
 #import "User.h"
 #import "PlayingCard.h"
 #import "PlayingDeck.h"
+#import "CardView.h"
 
 @interface SingleUserViewController ()
 
@@ -54,7 +56,7 @@
     card4.rank = 4;
     [cards addObject:card4];
     PlayingCard *card5 = [PlayingCard new];
-    card5.suit = [PlayingCard validSuits][2];
+    card5.suit = [PlayingCard validSuits][1];
     card5.rank = 5;
     [cards addObject:card5];
     
@@ -63,6 +65,15 @@
     }
     
     NSLog(@"OtherType--->>>%ld",(long)[GameTable judgeOutCardsOtherTypeFor:cards]);
+    
+    __weak __typeof(&*self)ws = self;
+    CardView *cardView = [[CardView alloc] initWithPlayingCard:card5];
+    [self.view addSubview:cardView];
+    [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.centerY.mas_equalTo(ws.view);
+        make.width.mas_equalTo(64);
+        make.height.mas_equalTo(96);
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
