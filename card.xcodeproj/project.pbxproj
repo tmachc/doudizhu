@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EDCF9F22F98210A2011B214 /* libPods-card.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 127EB18AFE5A1B8EE00A7F6D /* libPods-card.a */; };
+		E74A414C1BA2D41500CB21E2 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A414B1BA2D41500CB21E2 /* CardView.m */; };
+		E74A41591BA2D45E00CB21E2 /* AIforGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41501BA2D45E00CB21E2 /* AIforGame.m */; };
+		E74A415A1BA2D45E00CB21E2 /* GameTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41521BA2D45E00CB21E2 /* GameTable.m */; };
+		E74A415B1BA2D45E00CB21E2 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41541BA2D45E00CB21E2 /* PlayingCard.m */; };
+		E74A415C1BA2D45E00CB21E2 /* PlayingDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41561BA2D45E00CB21E2 /* PlayingDeck.m */; };
+		E74A415D1BA2D45E00CB21E2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41581BA2D45E00CB21E2 /* User.m */; };
 		E78F2D711B9FCF9400E1B04B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D701B9FCF9400E1B04B /* main.m */; };
 		E78F2D741B9FCF9400E1B04B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D731B9FCF9400E1B04B /* AppDelegate.m */; };
 		E78F2D771B9FCF9400E1B04B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D761B9FCF9400E1B04B /* ViewController.m */; };
@@ -16,10 +23,6 @@
 		E78F2D8B1B9FCF9400E1B04B /* cardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D8A1B9FCF9400E1B04B /* cardTests.m */; };
 		E78F2D961B9FDBA600E1B04B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D951B9FDBA600E1B04B /* Deck.m */; };
 		E78F2D9A1B9FDBFC00E1B04B /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D991B9FDBFC00E1B04B /* Card.m */; };
-		E78F2D9E1BA0039600E1B04B /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D9D1BA0039600E1B04B /* PlayingCard.m */; };
-		E78F2DA11BA003B500E1B04B /* PlayingDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2DA01BA003B500E1B04B /* PlayingDeck.m */; };
-		E78F2DA41BA0202B00E1B04B /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2DA31BA0202B00E1B04B /* User.m */; };
-		E78F2DA71BA029C300E1B04B /* GameTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2DA61BA029C300E1B04B /* GameTable.m */; };
 		E7FB5FBC1BA16D8E006AADBE /* SingleUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7FB5FBB1BA16D8E006AADBE /* SingleUserViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +37,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		127EB18AFE5A1B8EE00A7F6D /* libPods-card.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-card.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		55CC3405EB7F5009C1ABBC36 /* Pods-card.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-card.debug.xcconfig"; path = "Pods/Target Support Files/Pods-card/Pods-card.debug.xcconfig"; sourceTree = "<group>"; };
+		B2433A6DAC78BD4B3F173A64 /* Pods-card.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-card.release.xcconfig"; path = "Pods/Target Support Files/Pods-card/Pods-card.release.xcconfig"; sourceTree = "<group>"; };
+		E74A414A1BA2D41500CB21E2 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardView.h; path = DouDiZhu/View/CardView.h; sourceTree = "<group>"; };
+		E74A414B1BA2D41500CB21E2 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardView.m; path = DouDiZhu/View/CardView.m; sourceTree = "<group>"; };
+		E74A414F1BA2D45E00CB21E2 /* AIforGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIforGame.h; sourceTree = "<group>"; };
+		E74A41501BA2D45E00CB21E2 /* AIforGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIforGame.m; sourceTree = "<group>"; };
+		E74A41511BA2D45E00CB21E2 /* GameTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTable.h; sourceTree = "<group>"; };
+		E74A41521BA2D45E00CB21E2 /* GameTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTable.m; sourceTree = "<group>"; };
+		E74A41531BA2D45E00CB21E2 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
+		E74A41541BA2D45E00CB21E2 /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingCard.m; sourceTree = "<group>"; };
+		E74A41551BA2D45E00CB21E2 /* PlayingDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingDeck.h; sourceTree = "<group>"; };
+		E74A41561BA2D45E00CB21E2 /* PlayingDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingDeck.m; sourceTree = "<group>"; };
+		E74A41571BA2D45E00CB21E2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E74A41581BA2D45E00CB21E2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E78F2D6B1B9FCF9400E1B04B /* card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = card.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78F2D6F1B9FCF9400E1B04B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E78F2D701B9FCF9400E1B04B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -51,14 +69,6 @@
 		E78F2D951B9FDBA600E1B04B /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Deck.m; path = Model/Deck.m; sourceTree = "<group>"; };
 		E78F2D981B9FDBFC00E1B04B /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Card.h; path = Model/Card.h; sourceTree = "<group>"; };
 		E78F2D991B9FDBFC00E1B04B /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Card.m; path = Model/Card.m; sourceTree = "<group>"; };
-		E78F2D9C1BA0039600E1B04B /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingCard.h; path = DouDiZhu/PlayingCard.h; sourceTree = "<group>"; };
-		E78F2D9D1BA0039600E1B04B /* PlayingCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingCard.m; path = DouDiZhu/PlayingCard.m; sourceTree = "<group>"; };
-		E78F2D9F1BA003B500E1B04B /* PlayingDeck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlayingDeck.h; path = DouDiZhu/PlayingDeck.h; sourceTree = "<group>"; };
-		E78F2DA01BA003B500E1B04B /* PlayingDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlayingDeck.m; path = DouDiZhu/PlayingDeck.m; sourceTree = "<group>"; };
-		E78F2DA21BA0202B00E1B04B /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = DouDiZhu/User.h; sourceTree = "<group>"; };
-		E78F2DA31BA0202B00E1B04B /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = DouDiZhu/User.m; sourceTree = "<group>"; };
-		E78F2DA51BA029C300E1B04B /* GameTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameTable.h; path = DouDiZhu/GameTable.h; sourceTree = "<group>"; };
-		E78F2DA61BA029C300E1B04B /* GameTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameTable.m; path = DouDiZhu/GameTable.m; sourceTree = "<group>"; };
 		E7FB5FBA1BA16D8E006AADBE /* SingleUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleUserViewController.h; sourceTree = "<group>"; };
 		E7FB5FBB1BA16D8E006AADBE /* SingleUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleUserViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EDCF9F22F98210A2011B214 /* libPods-card.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,12 +92,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0359F5EA03E824AE1427193E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				127EB18AFE5A1B8EE00A7F6D /* libPods-card.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1C8DFD592BAF69DA2D80E797 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				55CC3405EB7F5009C1ABBC36 /* Pods-card.debug.xcconfig */,
+				B2433A6DAC78BD4B3F173A64 /* Pods-card.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E74A414D1BA2D41B00CB21E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E74A414A1BA2D41500CB21E2 /* CardView.h */,
+				E74A414B1BA2D41500CB21E2 /* CardView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		E74A414E1BA2D45E00CB21E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E74A414F1BA2D45E00CB21E2 /* AIforGame.h */,
+				E74A41501BA2D45E00CB21E2 /* AIforGame.m */,
+				E74A41511BA2D45E00CB21E2 /* GameTable.h */,
+				E74A41521BA2D45E00CB21E2 /* GameTable.m */,
+				E74A41531BA2D45E00CB21E2 /* PlayingCard.h */,
+				E74A41541BA2D45E00CB21E2 /* PlayingCard.m */,
+				E74A41551BA2D45E00CB21E2 /* PlayingDeck.h */,
+				E74A41561BA2D45E00CB21E2 /* PlayingDeck.m */,
+				E74A41571BA2D45E00CB21E2 /* User.h */,
+				E74A41581BA2D45E00CB21E2 /* User.m */,
+			);
+			name = Model;
+			path = DouDiZhu/Model;
+			sourceTree = "<group>";
+		};
 		E78F2D621B9FCF9400E1B04B = {
 			isa = PBXGroup;
 			children = (
 				E78F2D6D1B9FCF9400E1B04B /* card */,
 				E78F2D871B9FCF9400E1B04B /* cardTests */,
 				E78F2D6C1B9FCF9400E1B04B /* Products */,
+				1C8DFD592BAF69DA2D80E797 /* Pods */,
+				0359F5EA03E824AE1427193E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,14 +215,8 @@
 		E78F2D9B1BA0034100E1B04B /* DouDiZhu */ = {
 			isa = PBXGroup;
 			children = (
-				E78F2DA51BA029C300E1B04B /* GameTable.h */,
-				E78F2DA61BA029C300E1B04B /* GameTable.m */,
-				E78F2DA21BA0202B00E1B04B /* User.h */,
-				E78F2DA31BA0202B00E1B04B /* User.m */,
-				E78F2D9C1BA0039600E1B04B /* PlayingCard.h */,
-				E78F2D9D1BA0039600E1B04B /* PlayingCard.m */,
-				E78F2D9F1BA003B500E1B04B /* PlayingDeck.h */,
-				E78F2DA01BA003B500E1B04B /* PlayingDeck.m */,
+				E74A414E1BA2D45E00CB21E2 /* Model */,
+				E74A414D1BA2D41B00CB21E2 /* View */,
 			);
 			name = DouDiZhu;
 			sourceTree = "<group>";
@@ -177,9 +228,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E78F2D8E1B9FCF9400E1B04B /* Build configuration list for PBXNativeTarget "card" */;
 			buildPhases = (
+				682FB3997EBFAEEF6ADB5FC7 /* Check Pods Manifest.lock */,
 				E78F2D671B9FCF9400E1B04B /* Sources */,
 				E78F2D681B9FCF9400E1B04B /* Frameworks */,
 				E78F2D691B9FCF9400E1B04B /* Resources */,
+				FB8A18699E10E301AB019356 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,21 +318,56 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		682FB3997EBFAEEF6ADB5FC7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FB8A18699E10E301AB019356 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-card/Pods-card-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E78F2D671B9FCF9400E1B04B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E78F2DA41BA0202B00E1B04B /* User.m in Sources */,
-				E78F2D9E1BA0039600E1B04B /* PlayingCard.m in Sources */,
+				E74A415A1BA2D45E00CB21E2 /* GameTable.m in Sources */,
+				E74A41591BA2D45E00CB21E2 /* AIforGame.m in Sources */,
+				E74A415C1BA2D45E00CB21E2 /* PlayingDeck.m in Sources */,
+				E74A415D1BA2D45E00CB21E2 /* User.m in Sources */,
+				E74A415B1BA2D45E00CB21E2 /* PlayingCard.m in Sources */,
 				E78F2D9A1B9FDBFC00E1B04B /* Card.m in Sources */,
 				E78F2D961B9FDBA600E1B04B /* Deck.m in Sources */,
-				E78F2DA71BA029C300E1B04B /* GameTable.m in Sources */,
 				E7FB5FBC1BA16D8E006AADBE /* SingleUserViewController.m in Sources */,
+				E74A414C1BA2D41500CB21E2 /* CardView.m in Sources */,
 				E78F2D771B9FCF9400E1B04B /* ViewController.m in Sources */,
 				E78F2D741B9FCF9400E1B04B /* AppDelegate.m in Sources */,
 				E78F2D711B9FCF9400E1B04B /* main.m in Sources */,
-				E78F2DA11BA003B500E1B04B /* PlayingDeck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +491,7 @@
 		};
 		E78F2D8F1B9FCF9400E1B04B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55CC3405EB7F5009C1ABBC36 /* Pods-card.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = card/Info.plist;
@@ -413,6 +502,7 @@
 		};
 		E78F2D901B9FCF9400E1B04B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B2433A6DAC78BD4B3F173A64 /* Pods-card.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = card/Info.plist;

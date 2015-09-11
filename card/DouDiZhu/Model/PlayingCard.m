@@ -43,4 +43,9 @@
     return _suit ? _suit : @"";
 }
 
+- (BOOL)biggerThan:(PlayingCard *)card
+{
+    return self.rank > card.rank;
+}
+
 @end

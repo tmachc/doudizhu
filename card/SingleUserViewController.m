@@ -9,6 +9,8 @@
 #import "SingleUserViewController.h"
 #import "GameTable.h"
 #import "User.h"
+#import "PlayingCard.h"
+#import "PlayingDeck.h"
 
 @interface SingleUserViewController ()
 
@@ -24,6 +26,43 @@
     // 游戏桌记录谁是地主，谁有下一轮的出牌权
     
     // 开始游戏，出牌，判断手牌是否为空，下一个出牌
+    
+    NSMutableArray *cards = [NSMutableArray new];
+    for (int i = 0; i < 1; i ++) {
+        for (int j = 0; j < 4; j ++) {
+            PlayingCard *card1 = [PlayingCard new];
+            card1.suit = [PlayingCard validSuits][j];
+            card1.rank = i + 1;
+            [cards addObject:card1];
+        }
+    }
+    
+//    PlayingCard *card1 = [PlayingCard new];
+//    card1.suit = [PlayingCard validSuits][3];
+//    card1.rank = 2;
+//    [cards addObject:card1];
+    PlayingCard *card2 = [PlayingCard new];
+    card2.suit = [PlayingCard validSuits][3];
+    card2.rank = 4;
+    [cards addObject:card2];
+    PlayingCard *card3 = [PlayingCard new];
+    card3.suit = [PlayingCard validSuits][3];
+    card3.rank = 5;
+    [cards addObject:card3];
+    PlayingCard *card4 = [PlayingCard new];
+    card4.suit = [PlayingCard validSuits][2];
+    card4.rank = 4;
+    [cards addObject:card4];
+    PlayingCard *card5 = [PlayingCard new];
+    card5.suit = [PlayingCard validSuits][2];
+    card5.rank = 5;
+    [cards addObject:card5];
+    
+    for (int i = 0; i < cards.count; i ++) {
+        NSLog(@"card-->>>%@",((PlayingCard *)cards[i]).contents);
+    }
+    
+    NSLog(@"OtherType--->>>%ld",(long)[GameTable judgeOutCardsOtherTypeFor:cards]);
 }
 
 - (void)didReceiveMemoryWarning {

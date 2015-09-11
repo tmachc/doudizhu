@@ -27,14 +27,16 @@
 
 - (IBAction)clickSingle:(UIButton *)sender
 {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定跳转" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
-    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self performSegueWithIdentifier:@"singleGame" sender:nil];
-    }];
-    [alert addAction:cancelAction];
-    [alert addAction:okAction];
-    [self presentViewController:alert animated:YES completion:nil];
+    [self performSegueWithIdentifier:@"singleGame" sender:nil];
+    
+//    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定跳转" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+//    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+//        [self performSegueWithIdentifier:@"singleGame" sender:nil];
+//    }];
+//    [alert addAction:cancelAction];
+//    [alert addAction:okAction];
+//    [self presentViewController:alert animated:YES completion:nil];
 }
 
 #pragma mark - Navigation

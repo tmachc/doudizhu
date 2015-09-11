@@ -30,4 +30,13 @@
  */
 + (NSUInteger)maxRank;
 
+/**
+ *  比大小
+ *
+ *  @param card 比较对象
+ *
+ *  @return 是否比card大
+ */
+- (BOOL)biggerThan:(PlayingCard *)card;
+
 @end
