@@ -57,7 +57,7 @@
     [cards addObject:card4];
     PlayingCard *card5 = [PlayingCard new];
     card5.suit = [PlayingCard validSuits][1];
-    card5.rank = 5;
+    card5.rank = 9;
     [cards addObject:card5];
     
     for (int i = 0; i < cards.count; i ++) {
@@ -67,13 +67,17 @@
     NSLog(@"OtherType--->>>%ld",(long)[GameTable judgeOutCardsOtherTypeFor:cards]);
     
     __weak __typeof(&*self)ws = self;
-    CardView *cardView = [[CardView alloc] initWithPlayingCard:card5];
-    [self.view addSubview:cardView];
-    [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.centerY.mas_equalTo(ws.view);
-        make.width.mas_equalTo(64);
-        make.height.mas_equalTo(96);
-    }];
+    NSArray *sortCards = [cards sortCards];
+    for (int i = 0; i < sortCards.count; i ++) {
+        CardView *cardView = [[CardView alloc] initWithPlayingCard:sortCards[cards.count - i - 1]];
+        [self.view addSubview:cardView];
+        [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(30 + i * 30);
+            make.width.mas_equalTo(64);
+            make.height.mas_equalTo(96);
+            make.bottom.mas_equalTo(-20);
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

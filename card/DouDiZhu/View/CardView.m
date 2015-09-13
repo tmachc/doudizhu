@@ -23,15 +23,19 @@
 //        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:card.contents];
 //        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(str.length - 2, 1)];  // range代表从第几个开始，一共几个
 //        contentLab.attributedText = str;
-//        contentLab.text = card.contents;
-        contentLab.textAlignment = NSTextAlignmentLeft;
-        contentLab.font = [UIFont systemFontOfSize:15];
+        contentLab.text = card.contents;
+        if ([card.suit isEqualToString:@"♥︎"] || [card.suit isEqualToString:@"♦︎"]) {
+            contentLab.textColor = [UIColor redColor];
+        }
+        contentLab.textAlignment = NSTextAlignmentCenter;
+        contentLab.font = [UIFont boldSystemFontOfSize:15];
         contentLab.numberOfLines = 0;
         [self addSubview:contentLab];
         [contentLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
+            make.left.mas_equalTo(3);
             make.top.mas_equalTo(0);
-            make.width.height.mas_equalTo(45);
+            make.width.mas_equalTo(20);
+            make.height.mas_equalTo(45);
         }];
     }
     return self;
