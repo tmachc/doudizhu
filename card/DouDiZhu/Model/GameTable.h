@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "User.h"
 
 typedef NS_ENUM(NSInteger, OutCardsType) {
     KingBomb = 3,

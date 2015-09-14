@@ -8,12 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import "PlayingDeck.h"
+#import "PlayingCard.h"
+#import "GameTable.h"
+
+@protocol EndThinkingDelegate <NSObject>
+
+- (void)grabLandlord:(BOOL)isGrab withTag:(NSInteger)tag;
+- (void)outCards:(NSArray *)cards withTag:(NSInteger)tag;
+
+@end
 
 @interface User : NSObject
 
 @property (nonatomic, readonly) NSMutableArray *myCards;
-/*! @brief 是否拥有下一次的出牌权 */
-@property (nonatomic, getter = isMyTurn) BOOL myTurn;
+@property (nonatomic, readonly, getter=isLandlord) BOOL landlord;
+@property (nonatomic, getter=isTurn) BOOL turn;
+@property (nonatomic, assign) NSInteger tag;
+@property (weak) id<EndThinkingDelegate> delegete;
 
 - (void)setCarsCount:(NSInteger)count usingDeck:(PlayingDeck *)deck;
 
@@ -25,5 +36,11 @@
  *  @return 是否可以出
  */
 - (BOOL)outCards:(NSArray *)cards lastOut:(NSArray *)lastCards;
+
+- (void)setLandlordWithOtherCards:(NSArray *)otherCards;
+
+- (void)thinkingGrabLandlord;
+
+- (void)thinkingOutCards:(NSArray *)lastOutCards;
 
 @end

@@ -18,12 +18,20 @@
 
 @end
 
+#pragma mark - 排序 判断
+
 @implementation NSArray(GameTable)
 
 - (NSArray *)sortCards
 {
     return [self sortedArrayUsingComparator:^NSComparisonResult(PlayingCard *c1, PlayingCard *c2){
-        return [@(c1.rank) compare:@(c2.rank)];
+        NSComparisonResult result = [@(c1.rank) compare:@(c2.rank)];
+        if (result == NSOrderedSame) {
+            return [c1.suit compare:c2.suit];
+        }
+        else {
+            return result;
+        }
     }];
 }
 
@@ -206,7 +214,13 @@
 
 @end
 
+@interface GameTable ()
+
+@end
+
 @implementation GameTable
+
+#pragma mark - 判断牌类型
 
 + (OutCardsType)judgeOutCardsTypeFor:(NSArray *)cards
 {

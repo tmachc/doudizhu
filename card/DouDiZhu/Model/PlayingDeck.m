@@ -30,7 +30,7 @@
         [self addCard:cardLittle];
         PlayingCard *cardBig = [PlayingCard new];
         cardBig.rank = [PlayingCard maxRank] + 2;
-        cardLittle.contents = @"大王";
+        cardBig.contents = @"大王";
         [self addCard:cardBig];
     }
     return self;

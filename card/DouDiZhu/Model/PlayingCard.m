@@ -9,7 +9,7 @@
 #import "PlayingCard.h"
 
 @implementation PlayingCard
-@synthesize suit = _suit;
+@synthesize suit = _suit, contents = _contents;
 
 + (NSArray *)rankStrings
 {
@@ -28,6 +28,9 @@
 
 - (NSString *)contents
 {
+    if (self.rank > [PlayingCard maxRank]) {
+        return _contents;
+    }
     return [NSString stringWithFormat:@"%@\n%@", [PlayingCard rankStrings][self.rank], self.suit];
 }
 

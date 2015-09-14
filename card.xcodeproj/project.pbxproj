@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		0EDCF9F22F98210A2011B214 /* libPods-card.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 127EB18AFE5A1B8EE00A7F6D /* libPods-card.a */; };
 		E74A414C1BA2D41500CB21E2 /* CardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A414B1BA2D41500CB21E2 /* CardView.m */; };
-		E74A41591BA2D45E00CB21E2 /* AIforGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41501BA2D45E00CB21E2 /* AIforGame.m */; };
 		E74A415A1BA2D45E00CB21E2 /* GameTable.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41521BA2D45E00CB21E2 /* GameTable.m */; };
 		E74A415B1BA2D45E00CB21E2 /* PlayingCard.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41541BA2D45E00CB21E2 /* PlayingCard.m */; };
 		E74A415C1BA2D45E00CB21E2 /* PlayingDeck.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41561BA2D45E00CB21E2 /* PlayingDeck.m */; };
 		E74A415D1BA2D45E00CB21E2 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E74A41581BA2D45E00CB21E2 /* User.m */; };
+		E75C225B1BA6B1BB004092C5 /* AIforGame.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C22581BA6B1BB004092C5 /* AIforGame.m */; };
+		E75C225F1BA6BA05004092C5 /* MyCards.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C225E1BA6BA05004092C5 /* MyCards.m */; };
+		E75C22621BA6BFF3004092C5 /* MyCardsView.m in Sources */ = {isa = PBXBuildFile; fileRef = E75C22611BA6BFF3004092C5 /* MyCardsView.m */; };
 		E78F2D711B9FCF9400E1B04B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D701B9FCF9400E1B04B /* main.m */; };
 		E78F2D741B9FCF9400E1B04B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D731B9FCF9400E1B04B /* AppDelegate.m */; };
 		E78F2D771B9FCF9400E1B04B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E78F2D761B9FCF9400E1B04B /* ViewController.m */; };
@@ -42,8 +44,6 @@
 		B2433A6DAC78BD4B3F173A64 /* Pods-card.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-card.release.xcconfig"; path = "Pods/Target Support Files/Pods-card/Pods-card.release.xcconfig"; sourceTree = "<group>"; };
 		E74A414A1BA2D41500CB21E2 /* CardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CardView.h; path = DouDiZhu/View/CardView.h; sourceTree = "<group>"; };
 		E74A414B1BA2D41500CB21E2 /* CardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CardView.m; path = DouDiZhu/View/CardView.m; sourceTree = "<group>"; };
-		E74A414F1BA2D45E00CB21E2 /* AIforGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AIforGame.h; sourceTree = "<group>"; };
-		E74A41501BA2D45E00CB21E2 /* AIforGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AIforGame.m; sourceTree = "<group>"; };
 		E74A41511BA2D45E00CB21E2 /* GameTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameTable.h; sourceTree = "<group>"; };
 		E74A41521BA2D45E00CB21E2 /* GameTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameTable.m; sourceTree = "<group>"; };
 		E74A41531BA2D45E00CB21E2 /* PlayingCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayingCard.h; sourceTree = "<group>"; };
@@ -52,6 +52,12 @@
 		E74A41561BA2D45E00CB21E2 /* PlayingDeck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayingDeck.m; sourceTree = "<group>"; };
 		E74A41571BA2D45E00CB21E2 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		E74A41581BA2D45E00CB21E2 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E75C22571BA6B1BB004092C5 /* AIforGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AIforGame.h; path = DouDiZhu/Controller/AIforGame.h; sourceTree = "<group>"; };
+		E75C22581BA6B1BB004092C5 /* AIforGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AIforGame.m; path = DouDiZhu/Controller/AIforGame.m; sourceTree = "<group>"; };
+		E75C225D1BA6BA05004092C5 /* MyCards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCards.h; path = DouDiZhu/Controller/MyCards.h; sourceTree = "<group>"; };
+		E75C225E1BA6BA05004092C5 /* MyCards.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCards.m; path = DouDiZhu/Controller/MyCards.m; sourceTree = "<group>"; };
+		E75C22601BA6BFF3004092C5 /* MyCardsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCardsView.h; path = DouDiZhu/Controller/MyCardsView.h; sourceTree = "<group>"; };
+		E75C22611BA6BFF3004092C5 /* MyCardsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCardsView.m; path = DouDiZhu/Controller/MyCardsView.m; sourceTree = "<group>"; };
 		E78F2D6B1B9FCF9400E1B04B /* card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = card.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E78F2D6F1B9FCF9400E1B04B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E78F2D701B9FCF9400E1B04B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -121,8 +127,6 @@
 		E74A414E1BA2D45E00CB21E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E74A414F1BA2D45E00CB21E2 /* AIforGame.h */,
-				E74A41501BA2D45E00CB21E2 /* AIforGame.m */,
 				E74A41511BA2D45E00CB21E2 /* GameTable.h */,
 				E74A41521BA2D45E00CB21E2 /* GameTable.m */,
 				E74A41531BA2D45E00CB21E2 /* PlayingCard.h */,
@@ -134,6 +138,19 @@
 			);
 			name = Model;
 			path = DouDiZhu/Model;
+			sourceTree = "<group>";
+		};
+		E75C22561BA6B174004092C5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E75C22571BA6B1BB004092C5 /* AIforGame.h */,
+				E75C22581BA6B1BB004092C5 /* AIforGame.m */,
+				E75C225D1BA6BA05004092C5 /* MyCards.h */,
+				E75C225E1BA6BA05004092C5 /* MyCards.m */,
+				E75C22601BA6BFF3004092C5 /* MyCardsView.h */,
+				E75C22611BA6BFF3004092C5 /* MyCardsView.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 		E78F2D621B9FCF9400E1B04B = {
@@ -215,6 +232,7 @@
 		E78F2D9B1BA0034100E1B04B /* DouDiZhu */ = {
 			isa = PBXGroup;
 			children = (
+				E75C22561BA6B174004092C5 /* Controller */,
 				E74A414E1BA2D45E00CB21E2 /* Model */,
 				E74A414D1BA2D41B00CB21E2 /* View */,
 			);
@@ -357,7 +375,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E74A415A1BA2D45E00CB21E2 /* GameTable.m in Sources */,
-				E74A41591BA2D45E00CB21E2 /* AIforGame.m in Sources */,
+				E75C225B1BA6B1BB004092C5 /* AIforGame.m in Sources */,
 				E74A415C1BA2D45E00CB21E2 /* PlayingDeck.m in Sources */,
 				E74A415D1BA2D45E00CB21E2 /* User.m in Sources */,
 				E74A415B1BA2D45E00CB21E2 /* PlayingCard.m in Sources */,
@@ -367,6 +385,8 @@
 				E74A414C1BA2D41500CB21E2 /* CardView.m in Sources */,
 				E78F2D771B9FCF9400E1B04B /* ViewController.m in Sources */,
 				E78F2D741B9FCF9400E1B04B /* AppDelegate.m in Sources */,
+				E75C225F1BA6BA05004092C5 /* MyCards.m in Sources */,
+				E75C22621BA6BFF3004092C5 /* MyCardsView.m in Sources */,
 				E78F2D711B9FCF9400E1B04B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

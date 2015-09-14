@@ -8,6 +8,7 @@
 
 #import "CardView.h"
 #import "Masonry.h"
+#import "PlayingCard.h"
 
 @implementation CardView
 
@@ -24,7 +25,8 @@
 //        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(str.length - 2, 1)];  // range代表从第几个开始，一共几个
 //        contentLab.attributedText = str;
         contentLab.text = card.contents;
-        if ([card.suit isEqualToString:@"♥︎"] || [card.suit isEqualToString:@"♦︎"]) {
+        NSLog(@"card.rank--->>>%lu",(unsigned long)card.rank);
+        if ([card.suit isEqualToString:@"♥︎"] || [card.suit isEqualToString:@"♦︎"] || card.rank > [PlayingCard maxRank] + 1) {
             contentLab.textColor = [UIColor redColor];
         }
         contentLab.textAlignment = NSTextAlignmentCenter;
@@ -37,8 +39,20 @@
             make.width.mas_equalTo(20);
             make.height.mas_equalTo(45);
         }];
+        
+        UIButton *btn = [UIButton new];
+        [btn addTarget:self action:@selector(outCard:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.top.width.height.mas_equalTo(self);
+        }];
     }
     return self;
+}
+
+- (IBAction)outCard:(UIButton *)sender
+{
+    
 }
 
 @end

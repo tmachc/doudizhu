@@ -7,12 +7,11 @@
 //
 
 #import "User.h"
-#import "PlayingCard.h"
-#import "GameTable.h"
 
 @interface User()
 
 @property (nonatomic, readwrite) NSMutableArray *myCards;
+@property (nonatomic, readwrite, getter=isLandlord) BOOL landlord;
 
 @end
 
@@ -58,7 +57,7 @@
         // 判断上次是否是炸弹
         if (lastCardsType == Bomb) {
             // 炸弹判断大小
-            return [self cardsFirst:cards.firstObject BiggerThanLastCardsFirst:lastCards.firstObject];
+            return [cards.firstObject biggerThan:lastCards.firstObject];
         }
         else {
             return canOut;
@@ -88,14 +87,20 @@
     return [cards.firstObject biggerThan:lastCards.firstObject];
 }
 
-- (BOOL)cardsFirst:(PlayingCard *)card BiggerThanLastCardsFirst:(PlayingCard *)lastCard
+- (void)setLandlordWithOtherCards:(NSArray *)otherCards
 {
-    if (card.rank > lastCard.rank) {
-        return YES;
-    }
-    else {
-        return NO;
-    }
+    [self.myCards addObjectsFromArray:otherCards];
+    _landlord = true;
+}
+
+- (void)thinkingGrabLandlord
+{
+    
+}
+
+- (void)thinkingOutCards:(NSArray *)lastOutCards
+{
+    
 }
 
 @end
