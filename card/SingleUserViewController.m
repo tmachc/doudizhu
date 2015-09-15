@@ -28,9 +28,7 @@
 @property (nonatomic, strong) UIView *viewMyCard;
 @property (nonatomic, strong) UIButton *btnOutCard;
 @property (nonatomic, strong) UIButton *btnNotOut;
-@property (nonatomic, strong) UILabel *labNotOutMe;
-@property (nonatomic, strong) UILabel *labNotOutC1;
-@property (nonatomic, strong) UILabel *labNotOutC2;
+@property (nonatomic, strong) UILabel *labNotOut;
 
 @end
 
@@ -119,6 +117,7 @@
     self.btnNotOut.layer.borderWidth = 2;
     self.btnNotOut.layer.borderColor = [UIColor blueColor].CGColor;
     self.btnNotOut.backgroundColor = [UIColor whiteColor];
+    [self.btnNotOut addTarget:self action:@selector(notOutCards:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnNotOut];
     [self.btnNotOut mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
@@ -139,6 +138,15 @@
     [self.btnOutCard mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.top.mas_equalTo(ws.btnNotOut);
         make.left.mas_equalTo(ws.view.mas_centerX).with.offset(20);
+    }];
+    
+    [self.view addSubview:self.labNotOut];
+    self.labNotOut.hidden = YES;
+    [self.labNotOut mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(ws.view);
+        make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(30);
     }];
 }
 
@@ -201,7 +209,32 @@
 - (void)outCards:(NSArray *)cards withTag:(NSInteger)tag
 {
     if (cards.count) {
+        if (![self userWithTag:tag].myCards.count) {
+            // 该玩家赢了
+            self.labNotOut.text = @"赢了";
+            self.labNotOut.hidden = NO;
+            __weak __typeof(&*self)ws = self;
+            [self.labNotOut mas_remakeConstraints:^(MASConstraintMaker *make) {
+                if (tag == 0) {
+                    make.centerX.mas_equalTo(ws.view);
+                    make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+                }
+                else if (tag == 1) {
+                    make.right.mas_equalTo(ws.labC1Num.mas_left).with.offset(-10);
+                    make.top.mas_equalTo(ws.labC1Num);
+                }
+                else {
+                    make.left.mas_equalTo(ws.labC2Num.mas_right).with.offset(10);
+                    make.top.mas_equalTo(ws.labC2Num);
+                }
+                
+                make.width.mas_equalTo(60);
+                make.height.mas_equalTo(30);
+            }];
+            return;
+        }
         // 如果出牌了，修改Turn
+        self.labNotOut.hidden = YES;
         [[self userWithTag:tag] setTurn:YES];
         [[self userWithTag:(tag + 1) % 3] setTurn:NO];
         [[self userWithTag:(tag + 2) % 3] setTurn:NO];
@@ -219,7 +252,6 @@
             [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.mas_equalTo(48);
                 make.height.mas_equalTo(72);
-                
                 if (tag == 0) {
                     // 自己出的
                     make.centerX.mas_equalTo(-(cards.count / 2) * 25 + i * 25);
@@ -239,11 +271,35 @@
         }
     }
     else {
-        
+        // 没出牌
+        self.labNotOut.hidden = NO;
+        __weak __typeof(&*self)ws = self;
+        [self.labNotOut mas_remakeConstraints:^(MASConstraintMaker *make) {
+            if (tag == 0) {
+                make.centerX.mas_equalTo(ws.view);
+                make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+            }
+            else if (tag == 1) {
+                make.right.mas_equalTo(ws.labC1Num.mas_left).with.offset(-10);
+                make.top.mas_equalTo(ws.labC1Num);
+            }
+            else {
+                make.left.mas_equalTo(ws.labC2Num.mas_right).with.offset(10);
+                make.top.mas_equalTo(ws.labC2Num);
+            }
+            
+            make.width.mas_equalTo(60);
+            make.height.mas_equalTo(30);
+        }];
         
         if ([self userWithTag:(tag + 1) % 3].isTurn) {
             // 如果下一家的Turn 那么这轮没人要 下一家随意出
             self.otherCards = @[];
+            for (id item in self.view.subviews) {
+                if ([item isKindOfClass:[CardView class]]) {
+                    [item removeFromSuperview];
+                }
+            }
         }
     }
     
@@ -306,6 +362,14 @@
     self.btnNotOut.hidden = YES;
     self.btnOutCard.hidden = YES;
     [self.me.delegete outCards:outCard ? @[outCard] : @[] withTag:self.me.tag];
+}
+
+- (IBAction)notOutCards:(UIButton *)sender
+{
+    self.me.thinking = false;
+    self.btnNotOut.hidden = YES;
+    self.btnOutCard.hidden = YES;
+    [self.me.delegete outCards:@[] withTag:self.me.tag];
 }
 
 - (IBAction)outCards:(UIButton *)sender
@@ -391,6 +455,18 @@
         _labC2Num.backgroundColor = [UIColor whiteColor];
     }
     return _labC2Num;
+}
+
+- (UILabel *)labNotOut
+{
+    if (!_labNotOut) {
+        _labNotOut = [UILabel new];
+        _labNotOut.text = @"不要";
+        _labNotOut.textAlignment = NSTextAlignmentCenter;
+        _labNotOut.textColor = [UIColor blueColor];
+        _labNotOut.font = [UIFont boldSystemFontOfSize:18];
+    }
+    return _labNotOut;
 }
 
 @end

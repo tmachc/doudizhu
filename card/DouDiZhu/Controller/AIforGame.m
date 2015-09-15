@@ -39,6 +39,15 @@
                     }
                 }
             }
+            else {
+                if ([self outCards:@[self.myCards.firstObject] lastOut:lastOutCards]) {
+                    NSLog(@"computer%d 出的是 ： \n%@",(int)self.tag, ((PlayingCard *)self.myCards.firstObject).contents);
+                    PlayingCard *card = self.myCards.firstObject;
+                    [self.myCards removeObjectAtIndex:0];
+                    [self.delegete outCards:@[card] withTag:self.tag];
+                    return;
+                }
+            }
             
             NSLog(@"computer%d 不要",(int)self.tag);
             // 默认不出
