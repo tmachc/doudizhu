@@ -21,19 +21,30 @@
 
 - (void)thinkingOutCards:(NSArray *)lastOutCards
 {
-    if (lastOutCards.count == 1) {
-        for (int i = 0; i < self.myCards.count; i ++) {
-            if ([self.myCards[i] biggerThan:lastOutCards.firstObject]) {
-                if ([self outCards:@[self.myCards[i]] lastOut:lastOutCards]) {
-                    [self.delegete outCards:@[self.myCards[i]] withTag:self.tag];
-                    return;
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 延迟3秒出牌
+//    [NSThread sleepForTimeInterval:3];
+        sleep(3);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (lastOutCards.count == 1) {
+                for (int i = 0; i < self.myCards.count; i ++) {
+                    if ([self.myCards[i] biggerThan:lastOutCards.firstObject]) {
+                        if ([self outCards:@[self.myCards[i]] lastOut:lastOutCards]) {
+                            NSLog(@"computer%d 出的是 ： \n%@",(int)self.tag, ((PlayingCard *)self.myCards[i]).contents);
+                            PlayingCard *card = self.myCards[i];
+                            [self.myCards removeObjectAtIndex:i];
+                            [self.delegete outCards:@[card] withTag:self.tag];
+                            return;
+                        }
+                    }
                 }
             }
-        }
-    }
-    
-    // 默认不出
-    [self.delegete outCards:@[] withTag:self.tag];
+            
+            NSLog(@"computer%d 不要",(int)self.tag);
+            // 默认不出
+            [self.delegete outCards:@[] withTag:self.tag];
+        });
+    });
 }
 
 @end

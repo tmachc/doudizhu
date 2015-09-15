@@ -10,4 +10,9 @@
 
 @implementation MyCards
 
+- (void)thinkingOutCards:(NSArray *)lastOutCards
+{
+    self.thinking = true;
+}
+
 @end

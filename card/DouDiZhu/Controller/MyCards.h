@@ -10,4 +10,6 @@
 
 @interface MyCards : User
 
+@property (nonatomic, getter=isThinking) BOOL thinking;
+
 @end

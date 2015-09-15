@@ -22,6 +22,15 @@
 @property (nonatomic, strong) PlayingDeck *deck;
 @property (nonatomic, strong) GameTable *game;
 @property (nonatomic, strong) NSArray *otherCards;
+@property (nonatomic, strong) UILabel *labC1Num;
+@property (nonatomic, strong) UILabel *labC2Num;
+@property (nonatomic, strong) UIView *viewLandlordCard;
+@property (nonatomic, strong) UIView *viewMyCard;
+@property (nonatomic, strong) UIButton *btnOutCard;
+@property (nonatomic, strong) UIButton *btnNotOut;
+@property (nonatomic, strong) UILabel *labNotOutMe;
+@property (nonatomic, strong) UILabel *labNotOutC1;
+@property (nonatomic, strong) UILabel *labNotOutC2;
 
 @end
 
@@ -44,7 +53,7 @@
                         [self.deck getRandomCard],
                         [self.deck getRandomCard]
                         ];
-    NSLog(@"self.deck--->>>%ld",(long)[self.deck getCardTotals]);
+    [self initView];
     
     [self updateUI];
     
@@ -58,46 +67,105 @@
 
 #pragma mark - function
 
-- (void)updateUI
+- (void)initView
 {
-    for (id item in self.view.subviews) {
-        [item removeFromSuperview];
-    }
+    [self.view addSubview:self.labC1Num];
+    [self.view addSubview:self.labC2Num];
+    __weak __typeof(&*self)ws = self;
+    [self.labC1Num mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(-80);
+        make.top.mas_equalTo(100);
+        make.width.mas_equalTo(32);
+        make.height.mas_equalTo(48);
+    }];
+    [self.labC2Num mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.width.height.mas_equalTo(ws.labC1Num);
+        make.left.mas_equalTo(80);
+    }];
     
-//    __weak __typeof(&*self)ws = self;
-    NSArray *sortCards = [self.me.myCards sortCards];
+    self.viewLandlordCard = [UIView new];
+    [self.view addSubview:self.viewLandlordCard];
+    [self.viewLandlordCard mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(25);
+        make.centerX.mas_equalTo(ws.view);
+        make.width.mas_equalTo(106);
+        make.height.mas_equalTo(48);
+    }];
+    
+    self.viewMyCard = [UIView new];
+    [self.view addSubview:self.viewMyCard];
+    [self.viewMyCard mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(-20);
+        make.width.centerX.mas_equalTo(ws.view);
+        make.height.mas_equalTo(96);
+    }];
+    NSArray *sortCards = [self.otherCards sortCards];
     for (int i = 0; i < sortCards.count; i ++) {
         CardView *cardView = [[CardView alloc] initWithPlayingCard:sortCards[sortCards.count - i - 1]];
-        [self.view addSubview:cardView];
+        [self.viewLandlordCard addSubview:cardView];
         [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(30 + i * 30);
-            make.width.mas_equalTo(64);
-            make.height.mas_equalTo(96);
+            make.centerX.mas_equalTo(i * 37 - 37);
+            make.width.mas_equalTo(32);
+            make.height.mas_equalTo(48);
             make.bottom.mas_equalTo(-20);
         }];
     }
     
-    sortCards = [self.computer1.myCards sortCards];
-    for (int i = 0; i < sortCards.count; i ++) {
-        CardView *cardView = [[CardView alloc] initWithPlayingCard:sortCards[sortCards.count - i - 1]];
-        [self.view addSubview:cardView];
-        [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(20 + i * 25);
-            make.width.mas_equalTo(48);
-            make.height.mas_equalTo(72);
-            make.top.mas_equalTo(60);
-        }];
+    self.btnNotOut = [UIButton new];
+    [self.btnNotOut setTitle:@"不要" forState:UIControlStateNormal];
+    [self.btnNotOut setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    self.btnNotOut.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.btnNotOut.layer.cornerRadius = 10;
+    self.btnNotOut.layer.borderWidth = 2;
+    self.btnNotOut.layer.borderColor = [UIColor blueColor].CGColor;
+    self.btnNotOut.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.btnNotOut];
+    [self.btnNotOut mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+        make.right.mas_equalTo(ws.view.mas_centerX).with.offset(-20);
+        make.width.mas_equalTo(60);
+        make.height.mas_equalTo(30);
+    }];
+    
+    self.btnOutCard = [UIButton new];
+    [self.btnOutCard setTitle:@"出牌" forState:UIControlStateNormal];
+    [self.btnOutCard setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    self.btnOutCard.titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    self.btnOutCard.layer.cornerRadius = 10;
+    self.btnOutCard.layer.borderWidth = 2;
+    self.btnOutCard.layer.borderColor = [UIColor blueColor].CGColor;
+    self.btnOutCard.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.btnOutCard];
+    [self.btnOutCard mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.top.mas_equalTo(ws.btnNotOut);
+        make.left.mas_equalTo(ws.view.mas_centerX).with.offset(20);
+    }];
+}
+
+- (void)updateUI
+{
+    self.labC1Num.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.computer1.myCards.count];
+    self.labC2Num.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.computer2.myCards.count];
+    
+    if (self.viewMyCard.subviews.count == self.me.myCards.count) {
+        return;
     }
     
-    sortCards = [self.computer2.myCards sortCards];
+    for (id item in self.viewMyCard.subviews) {
+        if ([item isKindOfClass:[CardView class]]) {
+            [item removeFromSuperview];
+        }
+    }
+//    __weak __typeof(&*self)ws = self;
+    NSArray *sortCards = [self.me.myCards sortCards];
     for (int i = 0; i < sortCards.count; i ++) {
         CardView *cardView = [[CardView alloc] initWithPlayingCard:sortCards[sortCards.count - i - 1]];
-        [self.view addSubview:cardView];
+        [self.viewMyCard addSubview:cardView];
         [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(100 + i * 30);
-            make.width.mas_equalTo(48);
-            make.height.mas_equalTo(72);
-            make.top.mas_equalTo(160);
+            make.centerX.mas_equalTo(-((float)sortCards.count / 2) * 30 + i * 30);
+            make.width.mas_equalTo(64);
+            make.height.mas_equalTo(96);
+            make.bottom.mas_equalTo(0);
         }];
     }
 }
@@ -110,6 +178,7 @@
 
 #pragma mark - delegate
 
+// 抢地主的回调
 - (void)grabLandlord:(BOOL)isGrab withTag:(NSInteger)tag
 {
     if (isGrab) {
@@ -128,6 +197,7 @@
         [[self userWithTag:(tag + 1) % 3] thinkingGrabLandlord];
     }
 }
+// 出牌的回调
 - (void)outCards:(NSArray *)cards withTag:(NSInteger)tag
 {
     if (cards.count) {
@@ -135,13 +205,52 @@
         [[self userWithTag:tag] setTurn:YES];
         [[self userWithTag:(tag + 1) % 3] setTurn:NO];
         [[self userWithTag:(tag + 2) % 3] setTurn:NO];
+        [self updateUI];
+        for (id item in self.view.subviews) {
+            if ([item isKindOfClass:[CardView class]]) {
+                [item removeFromSuperview];
+            }
+        }
         self.otherCards = cards;
+        __weak __typeof(&*self)ws = self;
+        for (int i = 0; i < cards.count; i ++) {
+            CardView *cardView = [[CardView alloc] initWithPlayingCard:cards[cards.count - i - 1]];
+            [self.view addSubview:cardView];
+            [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(48);
+                make.height.mas_equalTo(72);
+                
+                if (tag == 0) {
+                    // 自己出的
+                    make.centerX.mas_equalTo(-(cards.count / 2) * 25 + i * 25);
+                    make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-10);
+                }
+                else if (tag == 1) {
+                    // computer1出的 右面
+                    make.right.mas_equalTo(ws.labC1Num.mas_left).with.offset(-10 - ((int)cards.count - i - 1) * 25);
+                    make.top.mas_equalTo(ws.labC1Num);
+                }
+                else {
+                    // computer2出的 左面
+                    make.left.mas_equalTo(ws.labC2Num.mas_right).with.offset(10 + i * 25);
+                    make.top.mas_equalTo(ws.labC2Num);
+                }
+            }];
+        }
     }
-    else if ([self userWithTag:(tag + 1) % 3].isTurn) {
-        // 如果下一家的Turn 那么这轮没人要 下一家随意出
-        self.otherCards = @[];
+    else {
+        
+        
+        if ([self userWithTag:(tag + 1) % 3].isTurn) {
+            // 如果下一家的Turn 那么这轮没人要 下一家随意出
+            self.otherCards = @[];
+        }
     }
     
+    if (tag == 2) {
+        self.btnNotOut.hidden = NO;
+        self.btnOutCard.hidden = NO;
+    }
     [[self userWithTag:(tag + 1) % 3] thinkingOutCards:self.otherCards];
 }
 
@@ -176,6 +285,27 @@
 {
     // 玩家不抢 让ai抢地主
     [self.me.delegete grabLandlord:sender.tag withTag:self.me.tag];
+}
+
+- (IBAction)outCard:(UIButton *)sender
+{
+    if (!self.me.isThinking) {
+        return;
+    }
+    PlayingCard *outCard;
+    for (PlayingCard *card in self.me.myCards) {
+        if (sender.tag == card.rank) {
+            if ([self.me outCards:@[card] lastOut:self.otherCards]) {
+                outCard = card;
+                [self.me.myCards removeObject:card];
+            }
+            break;
+        }
+    }
+    self.me.thinking = false;
+    self.btnNotOut.hidden = YES;
+    self.btnOutCard.hidden = YES;
+    [self.me.delegete outCards:outCard ? @[outCard] : @[] withTag:self.me.tag];
 }
 
 - (IBAction)outCards:(UIButton *)sender
@@ -231,6 +361,36 @@
         _deck = [[PlayingDeck alloc] init];
     }
     return _deck;
+}
+
+- (UILabel *)labC1Num
+{
+    if (!_labC1Num) {
+        _labC1Num = [UILabel new];
+        _labC1Num.textAlignment = NSTextAlignmentCenter;
+        _labC1Num.textColor = [UIColor blueColor];
+        _labC1Num.font = [UIFont boldSystemFontOfSize:18];
+        _labC1Num.layer.cornerRadius = 5;
+        _labC1Num.layer.borderWidth = 2;
+        _labC1Num.layer.borderColor = [UIColor grayColor].CGColor;
+        _labC1Num.backgroundColor = [UIColor whiteColor];
+    }
+    return _labC1Num;
+}
+
+- (UILabel *)labC2Num
+{
+    if (!_labC2Num) {
+        _labC2Num = [UILabel new];
+        _labC2Num.textAlignment = NSTextAlignmentCenter;
+        _labC2Num.textColor = [UIColor blueColor];
+        _labC2Num.font = [UIFont boldSystemFontOfSize:18];
+        _labC2Num.layer.cornerRadius = 5;
+        _labC2Num.layer.borderWidth = 2;
+        _labC2Num.layer.borderColor = [UIColor grayColor].CGColor;
+        _labC2Num.backgroundColor = [UIColor whiteColor];
+    }
+    return _labC2Num;
 }
 
 @end

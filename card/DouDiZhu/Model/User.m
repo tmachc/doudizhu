@@ -34,6 +34,7 @@
         Card *card = [deck getRandomCard];
         self.myCards[i] = card;
     }
+    self.myCards = [[self.myCards sortCards] mutableCopy];
 }
 
 - (BOOL)outCards:(NSArray *)cards lastOut:(NSArray *)lastCards

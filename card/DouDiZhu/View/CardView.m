@@ -9,6 +9,7 @@
 #import "CardView.h"
 #import "Masonry.h"
 #import "PlayingCard.h"
+#import "SingleUserViewController.h"
 
 @implementation CardView
 
@@ -21,11 +22,7 @@
         self.layer.borderColor = [UIColor grayColor].CGColor;
         self.backgroundColor = [UIColor whiteColor];
         UILabel *contentLab = [UILabel new];
-//        NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:card.contents];
-//        [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(str.length - 2, 1)];  // range代表从第几个开始，一共几个
-//        contentLab.attributedText = str;
         contentLab.text = card.contents;
-        NSLog(@"card.rank--->>>%lu",(unsigned long)card.rank);
         if ([card.suit isEqualToString:@"♥︎"] || [card.suit isEqualToString:@"♦︎"] || card.rank > [PlayingCard maxRank] + 1) {
             contentLab.textColor = [UIColor redColor];
         }
@@ -40,19 +37,29 @@
             make.height.mas_equalTo(45);
         }];
         
-        UIButton *btn = [UIButton new];
-        [btn addTarget:self action:@selector(outCard:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:btn];
-        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.width.height.mas_equalTo(self);
-        }];
+//        UIButton *btn = [UIButton new];
+        self.tag = card.rank;
+        [self addTarget:(SingleUserViewController *)[self findNearestViewController:self] action:@selector(outCard:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:btn];
+//        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.top.width.height.mas_equalTo(self);
+//        }];
     }
     return self;
 }
 
-- (IBAction)outCard:(UIButton *)sender
+//找到最近的上一级 ViewController
+- (UIViewController *)findNearestViewController:(UIView *)view
 {
-    
+    UIViewController *viewController = nil;
+    for (UIView *next = [view superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            viewController = (UIViewController *)nextResponder;
+            break;
+        }
+    }
+    return viewController;
 }
 
 @end

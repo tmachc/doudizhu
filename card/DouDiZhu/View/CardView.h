@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PlayingCard.h"
 
-@interface CardView : UIView
+@interface CardView : UIButton
 
 - (instancetype)initWithPlayingCard:(PlayingCard *)card;
 

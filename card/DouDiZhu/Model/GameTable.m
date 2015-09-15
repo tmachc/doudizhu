@@ -241,10 +241,6 @@
 + (OutCardsOtherType)judgeOutCardsOtherTypeFor:(NSArray *)cards
 {
     cards = [cards sortCards];
-    NSLog(@"\n----------\n");
-    for (int i = 0; i < cards.count; i ++) {
-        NSLog(@"card-->>>%@",((PlayingCard *)cards[i]).contents);
-    }
     switch (cards.count) {
         case 0:
             return 0;
