@@ -11,6 +11,4 @@
 
 @interface SingleUserViewController : UIViewController
 
-- (IBAction)outCard:(UIButton *)sender;
-
 @end

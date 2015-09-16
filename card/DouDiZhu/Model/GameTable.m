@@ -212,6 +212,19 @@
     return plane;
 }
 
+- (PlayingCard *)findSmallForMoreCards
+{
+    NSMutableArray *ary = [self findThree];
+    PlayingCard *card;
+    NSLog(@"card-->>%lu",(unsigned long)card.rank);
+    for (PlayingCard *card1 in ary) {
+        if (card.rank > card1.rank) {
+            card = card1;
+        }
+    }
+    return card;
+}
+
 @end
 
 @interface GameTable ()

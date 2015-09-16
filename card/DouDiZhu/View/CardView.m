@@ -11,12 +11,19 @@
 #import "PlayingCard.h"
 #import "SingleUserViewController.h"
 
+@interface CardView ()
+
+@property (nonatomic, strong, readwrite) PlayingCard *card;
+
+@end
+
 @implementation CardView
 
 - (instancetype)initWithPlayingCard:(PlayingCard *)card
 {
     self = [super init];
     if (self) {
+        self.card = card;
         self.layer.cornerRadius = 5;
         self.layer.borderWidth = 2;
         self.layer.borderColor = [UIColor grayColor].CGColor;
@@ -36,16 +43,19 @@
             make.width.mas_equalTo(20);
             make.height.mas_equalTo(45);
         }];
-        
-//        UIButton *btn = [UIButton new];
-        self.tag = card.rank;
-        [self addTarget:(SingleUserViewController *)[self findNearestViewController:self] action:@selector(outCard:) forControlEvents:UIControlEventTouchUpInside];
-//        [self addSubview:btn];
-//        [btn mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.top.width.height.mas_equalTo(self);
-//        }];
     }
     return self;
+}
+
+- (void)setGrayBackgroud:(BOOL)grayBackgroud
+{
+    _grayBackgroud = grayBackgroud;
+    if (grayBackgroud) {
+        self.backgroundColor = [UIColor lightGrayColor];
+    }
+    else {
+        self.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 //找到最近的上一级 ViewController

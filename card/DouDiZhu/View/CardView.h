@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "PlayingCard.h"
 
-@interface CardView : UIButton
+@interface CardView : UIView
+
+@property (nonatomic, getter=isGrayBackgroud) BOOL grayBackgroud;
+@property (nonatomic, getter=isSelected) BOOL selected;
+@property (nonatomic, strong, readonly) PlayingCard *card;
 
 - (instancetype)initWithPlayingCard:(PlayingCard *)card;
 

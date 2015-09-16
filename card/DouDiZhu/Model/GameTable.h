@@ -40,6 +40,7 @@ typedef NS_ENUM(NSInteger, OutCardsOtherType) {
 @interface NSArray (GameTable)
 
 - (NSArray *)sortCards;
+- (PlayingCard *)findSmallForMoreCards;
 
 @end
 

@@ -12,6 +12,7 @@
 #import "PlayingDeck.h"
 #import "CardView.h"
 #import "MyCards.h"
+#import "MyCardsView.h"
 #import "AIforGame.h"
 
 @interface SingleUserViewController () <EndThinkingDelegate>
@@ -25,7 +26,7 @@
 @property (nonatomic, strong) UILabel *labC1Num;
 @property (nonatomic, strong) UILabel *labC2Num;
 @property (nonatomic, strong) UIView *viewLandlordCard;
-@property (nonatomic, strong) UIView *viewMyCard;
+@property (nonatomic, strong) MyCardsView *myCardsView;
 @property (nonatomic, strong) UIButton *btnOutCard;
 @property (nonatomic, strong) UIButton *btnNotOut;
 @property (nonatomic, strong) UILabel *labNotOut;
@@ -90,9 +91,9 @@
         make.height.mas_equalTo(48);
     }];
     
-    self.viewMyCard = [UIView new];
-    [self.view addSubview:self.viewMyCard];
-    [self.viewMyCard mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.myCardsView = [MyCardsView new];
+    [self.view addSubview:self.myCardsView];
+    [self.myCardsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(-20);
         make.width.centerX.mas_equalTo(ws.view);
         make.height.mas_equalTo(96);
@@ -110,6 +111,7 @@
     }
     
     self.btnNotOut = [UIButton new];
+    self.btnNotOut.hidden = YES;
     [self.btnNotOut setTitle:@"不要" forState:UIControlStateNormal];
     [self.btnNotOut setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     self.btnNotOut.titleLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -120,13 +122,14 @@
     [self.btnNotOut addTarget:self action:@selector(notOutCards:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnNotOut];
     [self.btnNotOut mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+        make.bottom.mas_equalTo(ws.myCardsView.mas_top).with.offset(-20);
         make.right.mas_equalTo(ws.view.mas_centerX).with.offset(-20);
         make.width.mas_equalTo(60);
         make.height.mas_equalTo(30);
     }];
     
     self.btnOutCard = [UIButton new];
+    self.btnOutCard.hidden = YES;
     [self.btnOutCard setTitle:@"出牌" forState:UIControlStateNormal];
     [self.btnOutCard setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     self.btnOutCard.titleLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -134,6 +137,7 @@
     self.btnOutCard.layer.borderWidth = 2;
     self.btnOutCard.layer.borderColor = [UIColor blueColor].CGColor;
     self.btnOutCard.backgroundColor = [UIColor whiteColor];
+    [self.btnOutCard addTarget:self action:@selector(outCards:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.btnOutCard];
     [self.btnOutCard mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.top.mas_equalTo(ws.btnNotOut);
@@ -144,7 +148,7 @@
     self.labNotOut.hidden = YES;
     [self.labNotOut mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(ws.view);
-        make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+        make.bottom.mas_equalTo(ws.myCardsView.mas_top).with.offset(-20);
         make.width.mas_equalTo(60);
         make.height.mas_equalTo(30);
     }];
@@ -155,11 +159,11 @@
     self.labC1Num.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.computer1.myCards.count];
     self.labC2Num.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.computer2.myCards.count];
     
-    if (self.viewMyCard.subviews.count == self.me.myCards.count) {
+    if (self.myCardsView.subviews.count == self.me.myCards.count) {
         return;
     }
     
-    for (id item in self.viewMyCard.subviews) {
+    for (id item in self.myCardsView.subviews) {
         if ([item isKindOfClass:[CardView class]]) {
             [item removeFromSuperview];
         }
@@ -168,9 +172,9 @@
     NSArray *sortCards = [self.me.myCards sortCards];
     for (int i = 0; i < sortCards.count; i ++) {
         CardView *cardView = [[CardView alloc] initWithPlayingCard:sortCards[sortCards.count - i - 1]];
-        [self.viewMyCard addSubview:cardView];
+        [self.myCardsView addSubview:cardView];
         [cardView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(-((float)sortCards.count / 2) * 30 + i * 30);
+            make.centerX.mas_equalTo(-((float)sortCards.count / 2) * 30 + i * 30 + 15);
             make.width.mas_equalTo(64);
             make.height.mas_equalTo(96);
             make.bottom.mas_equalTo(0);
@@ -180,8 +184,10 @@
 
 - (void)start
 {
+    UIButton *btn = [UIButton new];
+    btn.tag = 1;
     // 抢地主
-    [self grabLandlord:nil];
+    [self grabLandlord:btn];
 }
 
 #pragma mark - delegate
@@ -197,8 +203,11 @@
         [[self userWithTag:tag] setTurn:YES];
         [[self userWithTag:(tag + 1) % 3] setTurn:NO];
         [[self userWithTag:(tag + 2) % 3] setTurn:NO];
-        if (tag) {
-            [[self userWithTag:tag] thinkingOutCards:self.otherCards];
+        [[self userWithTag:tag] thinkingOutCards:self.otherCards];
+        if (!tag) {
+            // 我抢的地主
+            self.btnNotOut.hidden = NO;
+            self.btnOutCard.hidden = NO;
         }
     }
     else {
@@ -217,7 +226,7 @@
             [self.labNotOut mas_remakeConstraints:^(MASConstraintMaker *make) {
                 if (tag == 0) {
                     make.centerX.mas_equalTo(ws.view);
-                    make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+                    make.bottom.mas_equalTo(ws.myCardsView.mas_top).with.offset(-20);
                 }
                 else if (tag == 1) {
                     make.right.mas_equalTo(ws.labC1Num.mas_left).with.offset(-10);
@@ -254,8 +263,8 @@
                 make.height.mas_equalTo(72);
                 if (tag == 0) {
                     // 自己出的
-                    make.centerX.mas_equalTo(-(cards.count / 2) * 25 + i * 25);
-                    make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-10);
+                    make.centerX.mas_equalTo(-((int)cards.count / 2) * 25 + i * 25);
+                    make.bottom.mas_equalTo(ws.myCardsView.mas_top).with.offset(-10);
                 }
                 else if (tag == 1) {
                     // computer1出的 右面
@@ -277,7 +286,7 @@
         [self.labNotOut mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (tag == 0) {
                 make.centerX.mas_equalTo(ws.view);
-                make.bottom.mas_equalTo(ws.viewMyCard.mas_top).with.offset(-20);
+                make.bottom.mas_equalTo(ws.myCardsView.mas_top).with.offset(-20);
             }
             else if (tag == 1) {
                 make.right.mas_equalTo(ws.labC1Num.mas_left).with.offset(-10);
@@ -343,26 +352,26 @@
     [self.me.delegete grabLandlord:sender.tag withTag:self.me.tag];
 }
 
-- (IBAction)outCard:(UIButton *)sender
-{
-    if (!self.me.isThinking) {
-        return;
-    }
-    PlayingCard *outCard;
-    for (PlayingCard *card in self.me.myCards) {
-        if (sender.tag == card.rank) {
-            if ([self.me outCards:@[card] lastOut:self.otherCards]) {
-                outCard = card;
-                [self.me.myCards removeObject:card];
-            }
-            break;
-        }
-    }
-    self.me.thinking = false;
-    self.btnNotOut.hidden = YES;
-    self.btnOutCard.hidden = YES;
-    [self.me.delegete outCards:outCard ? @[outCard] : @[] withTag:self.me.tag];
-}
+//- (IBAction)outCard:(UIButton *)sender
+//{
+//    if (!self.me.isThinking) {
+//        return;
+//    }
+//    PlayingCard *outCard;
+//    for (PlayingCard *card in self.me.myCards) {
+//        if (sender.tag == card.rank) {
+//            if ([self.me outCards:@[card] lastOut:self.otherCards]) {
+//                outCard = card;
+//                [self.me.myCards removeObject:card];
+//            }
+//            break;
+//        }
+//    }
+//    self.me.thinking = false;
+//    self.btnNotOut.hidden = YES;
+//    self.btnOutCard.hidden = YES;
+//    [self.me.delegete outCards:outCard ? @[outCard] : @[] withTag:self.me.tag];
+//}
 
 - (IBAction)notOutCards:(UIButton *)sender
 {
@@ -374,9 +383,23 @@
 
 - (IBAction)outCards:(UIButton *)sender
 {
-//    if ([self.me outCards: lastOut:]) {
-//
-//    }
+    NSMutableArray *ary = [NSMutableArray new];
+    for (CardView *cardView in self.myCardsView.subviews) {
+        if (cardView.isSelected) {
+            [ary addObject:cardView.card];
+            [self.me.myCards removeObject:cardView.card];
+        }
+    }
+    if ([self.me outCards:[ary sortCards] lastOut:self.otherCards]) {
+        self.me.thinking = false;
+        self.btnNotOut.hidden = YES;
+        self.btnOutCard.hidden = YES;
+        [self.me.delegete outCards:[ary sortCards] withTag:self.me.tag];
+    }
+    else {
+        NSLog(@"这个牌不能出！");
+        [self.myCardsView touchesCancelled:nil withEvent:nil];
+    }
 }
 
 #pragma mark - Navigation

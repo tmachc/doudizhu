@@ -85,6 +85,9 @@
     }
     
     // *********** 类型一样，比大小  三带一 三带二 四带二 飞机除外
+    if (cardsOtherType == ThreeAndOne || cardsOtherType == ThreeAndDouble || cardsOtherType == FourAndTwo || cardsOtherType == FourAndTwoDouble || cardsOtherType == PlaneAndOne || cardsOtherType == PlaneAndDouble) {
+        return [[cards findSmallForMoreCards] biggerThan:[lastCards findSmallForMoreCards]];
+    }
     return [cards.firstObject biggerThan:lastCards.firstObject];
 }
 
