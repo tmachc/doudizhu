@@ -19,10 +19,17 @@
 
 @implementation MyCardsView
 
++ (void)load
+{
+    NSLog(@"load");
+}
+
 #pragma mark - touch
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    self.beginNum = -1;
+    self.endNum = -1;
     UITouch *touch = [touches anyObject];
     CGPoint point;
     for (int i = 0; i < self.subviews.count; i ++) {
@@ -61,15 +68,20 @@
     CGPoint point;
     for (int i = 0; i < self.subviews.count; i ++) {
         point = [touch locationInView:self.subviews[i]];
-#warning TODO 加上y坐标的判断
-        if (point.x > 0 && point.x < 30 ) {
+        if (point.x > 0 && point.x < 30 && point.y > 0 && point.y < self.frame.size.height) {
             self.endNum = i;
             break;
         }
     }
     
     for (int i = 0; i < self.subviews.count; i ++) {
-        ((CardView *)self.subviews[i]).grayBackgroud = (i >= self.beginNum && i <= self.endNum);
+        if ((i >= self.beginNum && i <= self.endNum) || (i <= self.beginNum && i >= self.endNum)) {
+            ((CardView *)self.subviews[i]).grayBackgroud = YES;
+        }
+        else {
+            ((CardView *)self.subviews[i]).grayBackgroud = NO;
+        }
+        
     }
 }
 
@@ -87,9 +99,13 @@
 - (void)endSelect
 {
     for (CardView *view in self.subviews) {
-        [view mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.bottom.mas_equalTo(view.isSelected ? -10 : 0);
-        }];
+        if (view.isGrayBackgroud) {
+            view.grayBackgroud = false;
+            view.selected = !view.isSelected;
+            [view mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.bottom.mas_equalTo(view.isSelected ? -10 : 0);
+            }];
+        }
     }
 }
 
